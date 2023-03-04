@@ -25,7 +25,7 @@ module.exports.createUser = async (req, res) => {
         const refreshToken = jwt.sign(
           { id: user.id, username: user.username },
           process.env.REFRESH_TOKEN_SECRET,
-          { expiresIn: "7d" }
+          { expiresIn: "5m" }
         );
         const accessToken = jwt.sign(
           { id: user.id, username: user.username },
@@ -59,7 +59,7 @@ module.exports.loginUser = async (req, res) => {
           const refreshToken = jwt.sign(
             { id: user.id, username: user.username },
             process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: "7d" }
+            { expiresIn: "5m" }
           );
           const accessToken = jwt.sign(
             { id: user.id, username: user.username },
