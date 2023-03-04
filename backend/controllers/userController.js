@@ -54,7 +54,7 @@ module.exports.loginUser = async (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         if (err) {
-          res.status(401).json({ message: err.message });
+          res.status(400).json({ message: err.message });
         } else if (result) {
           const refreshToken = jwt.sign(
             { id: user.id, username: user.username },
@@ -71,11 +71,11 @@ module.exports.loginUser = async (req, res) => {
           });
           res.status(200).json({ accessToken });
         } else {
-          res.status(401).json({ message: "Invalid credentials" });
+          res.status(400).json({ message: "Invalid credentials" });
         }
       });
     } else {
-      res.status(401).json({ message: "Invalid credentials" });
+      res.status(400).json({ message: "Invalid credentials" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
