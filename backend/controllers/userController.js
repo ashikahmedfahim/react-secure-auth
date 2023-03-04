@@ -30,7 +30,7 @@ module.exports.createUser = async (req, res) => {
         const accessToken = jwt.sign(
           { id: user.id, username: user.username },
           process.env.ACCESS_TOKEN_SECRET,
-          { expiresIn: "15m" }
+          { expiresIn: "1m" }
         );
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
@@ -64,7 +64,7 @@ module.exports.loginUser = async (req, res) => {
           const accessToken = jwt.sign(
             { id: user.id, username: user.username },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "15m" }
+            { expiresIn: "1m" }
           );
           res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
@@ -105,7 +105,7 @@ module.exports.getAccessToken = async (req, res) => {
             const accessToken = jwt.sign(
               { id: user.id, username: user.username },
               process.env.ACCESS_TOKEN_SECRET,
-              { expiresIn: "15m" }
+              { expiresIn: "1m" }
             );
             res.status(200).json({ accessToken });
           }

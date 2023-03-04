@@ -1,6 +1,8 @@
+const jwt = require("jsonwebtoken");
+
 module.exports.isLoggedIn = async (req, res, next) => {
   try {
-    const accessToken = req.headers.authorization.split(" ")[1];
+    const accessToken = req.headers?.authorization?.split(" ")[1];
     if (accessToken) {
       jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
